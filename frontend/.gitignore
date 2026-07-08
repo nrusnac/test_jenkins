@@ -13,6 +13,9 @@ dist-ssr
 *.local
 test-results
 
+# Node runtime auto-provisioned by the Jenkins pipeline
+.node
+
 # Yarn — keep only the pinned release committed
 .yarn/*
 !.yarn/releases

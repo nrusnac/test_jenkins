@@ -42,9 +42,11 @@ lockfile; the repo commits `yarn.lock`.
 
 1. New Item → **Pipeline** (or Multibranch Pipeline).
 2. Definition: *Pipeline script from SCM* → Git → `https://github.com/nrusnac/test_jenkins.git`, branch `main`, script path `Jenkinsfile`.
-3. Agent requirements: JDK 17+ and Node.js 20+ on the PATH. Yarn is optional —
-   the pipeline installs the launcher if missing, and the pinned Yarn 4.17.0
-   release is committed to the repo.
+3. Agent requirements: just a JDK 17+ (any Jenkins controller/agent already has
+   one). The pipeline auto-downloads Node.js 24 into the workspace if the agent
+   lacks it, installs a yarn launcher if missing, and the pinned Yarn 4.17.0
+   release is committed to the repo — so the stock `jenkins/jenkins` Docker
+   image works with zero extra setup.
 
 The pipeline publishes JUnit test results from both parts and archives the
 backend jar plus the frontend `dist/` bundle on success.
